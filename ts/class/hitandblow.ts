@@ -1,11 +1,6 @@
-// as constにより["nomal", "hard"]型に固定できる。扱う上でstring[]に変換されるのを防ぐ
 const modes = ['nomal', 'hard'] as const;
-//[]で型を抽出できる。numberキーワードによりすべての中身を取り出せる
 type Mode = typeof modes[number];
-
-//implementsで,HitAndBlowクラスはGameの抽象クラスを実装するということ
 export class HitAndBlow {
-  //初期値のセットは演算処理がなければ constructorを介す必要はない
   private readonly answerSource = [
     '0',
     '1',
@@ -24,8 +19,6 @@ export class HitAndBlow {
 
   //３つの数字を決定
   async setting() {
-    //包含関係なので型アサーションを活用（返って来たstring型をMode型として扱う）
-    // this.mode = await promptSelect<Mode>('モードを入力してください', modes);
     const answrLength = this.getAnswerLength();
     while (this.answer.length < answrLength) {
       const num = Math.floor(Math.random() * this.answerSource.length);
@@ -43,8 +36,6 @@ export class HitAndBlow {
       case 'hard':
         return 4;
       default:
-        //到達不能なコードなのでnever型が推論
-        //caseの書き忘れはnever型を活用
         const neverValue: never = this.mode;
         throw new Error(`${neverValue}は無効なモードです...`);
     }
@@ -64,7 +55,6 @@ export class HitAndBlow {
     }
     if (result.hit === this.answer.length) this.tryCount += 1;
     else {
-      console.log(`---\nHit: ${result.hit}\nBlow: ${result.blow}\n---`);
       const log = document.getElementById('log');
       const ele = document.createElement('ul');
       ele.innerHTML = `${input}: Hit: ${result.hit} Blow: ${result.blow}`;
@@ -73,7 +63,6 @@ export class HitAndBlow {
     }
   }
 
-  //外部からアクセスしているわけではないのでprivate修飾子を付与
   private check(input: string[]) {
     let hitCount = 0;
     let blowCount = 0;
@@ -113,7 +102,6 @@ export class HitAndBlow {
 
   end() {
     alert(`正解です!! \n試行回数: ${this.tryCount}回`);
-    //インスタンス内のデータをクリア
     this.reset();
   }
 

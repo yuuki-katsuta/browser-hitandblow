@@ -9,8 +9,8 @@ app.innerHTML = mainPage;
 for (let i = 0; i < 10; i++) {
   document.getElementById(
     'render'
-  )!.innerHTML += `<input type="checkbox" value=${i} name="number">
-  <label>${i}</label>`;
+  )!.innerHTML += `<span><input type="checkbox" value=${i} name="number">
+  <label>${i}</label></span>`;
 }
 
 const checkbox = document.querySelectorAll(

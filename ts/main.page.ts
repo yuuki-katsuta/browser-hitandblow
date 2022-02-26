@@ -3,9 +3,7 @@ export const mainPage: string = `
     <p>0から9の数字で3ケタの数字を作り、その数字を予測していくゲームです。<br/> 予測した数字が位置も数字もあっている場合は「hit」、位置は間違っているが数字は合っているという場合は「blow」と表示されます。</p>
     <div>
       <p>3つの数字を選択してね!</p>
-      <form>
-        <div id="render"></div>
-      </form>
+      <div id="render" class="select-wrapper"></div>
       <br/>
       <spanp>選択した数字→</span>
       <span id="select"></span>

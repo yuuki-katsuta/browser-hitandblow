@@ -6,6 +6,7 @@
 }
 .select-wrapper > span{
   width: 25%;
+  margin-bottom: 8px;
 }
 #reset {
   margin-right: 16px;
